@@ -1,3 +1,4 @@
+require 'pry'
 class StudentsController < ApplicationController
   def new
     @student = Student.new
@@ -21,10 +22,13 @@ class StudentsController < ApplicationController
   end
 
   def index
-    @students = Student.all
+    #raise params.inspect
+    @students = Student.search(params[:query])
+    render "index"
   end
 
   def student_params
-    params.require(:student).permit(:name, :birthday, :hometown)
+    params.require(:studenty).permit(:name, :birthday, :hometown)
   end
+
 end
